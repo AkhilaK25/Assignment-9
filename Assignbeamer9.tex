@@ -1,0 +1,85 @@
+\documentclass{beamer}
+
+\usetheme{CambridgeUS}
+\title{Assignment 9} 
+\author{Akhila Kumbha,CS21BTECH11031}
+\date{\today}
+\logo{\large \LaTeX{}}
+
+
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\begin{document}
+
+
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+\logo{}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+\section{Question}
+\begin{frame}{Question}
+
+Suppose the Conditional distribution of X given Y = n is binomial with parameters n and 
+$p_1$. Further, Y is a binomial random variable with parameters M and $p_2$. Show that the 
+distribution of X is also binomial. Find its parameters.\\ 
+
+
+\end{frame}
+
+
+\section{Solution}
+\begin{frame}{Solution}
+If X has the binomial distribution B(m, p) given by 
+\begin{align}
+    p_n = \pr{X=n} = \myvec{m \\ n}p^nq^{m-n},0\leq n\leq m
+\end{align}
+then\\ 
+Moment generating function
+\begin{align}
+    \Gamma(z)=E\cbrak{z^{X}} = \sum_{n=0}^m  \myvec{m \\ n}p^nq^{m-n}z^n=(pz+q)^m 
+\end{align}
+\end{frame} 
+
+\begin{frame}
+Given that the Conditional distribution of X given Y = n is binomial with parameters n and 
+$p_1$.
+\begin{multline}
+\pr{X=k|Y=n}=\myvec{n \\ k}p_1^kq_1^{n-k} ,k=0,1,2,\dots n\\
+E[z^{X}|Y=n]=\sum_{k=0}^n z^{k}\pr{X=k|Y=n}\\
+=\brak{p_1 z+q_1}^n
+\end{multline}
+\end{frame}
+\begin{frame}
+Also,We have
+\begin{align}
+\Gamma(z)=E\cbrak{z^{X}}=E\cbrak{E[z^{X}|Y=n]}\\
+=\sum_{n=0}^M E[z^{X}|Y=n]\pr{Y=n}\\
+=\sum_{n=0}^M \brak{p_1 z+q_1}^n \myvec{M \\ n}p_2^nq_2^{M-n}\\
+=\sum_{n=0}^M\myvec{M \\ n}[p_2\brak{p_1 z+q_1}]^n q_2^{M-n}\\
+=\brak{{p_1p_2 z+p_2q_1+q_2}}^M
+\end{align}
+\end{frame}
+\begin{frame}
+But
+\begin{align}
+1-p_1p_2 = 1-\brak{1-q_1}\brak{1-q_2} = q_1p_2+q_2
+\end{align}
+Hence
+\begin{align}
+\Gamma(z)=\brak{pz+q}^M
+\end{align}
+Where $p=p_1p_2$.\\ Therefore,
+X $\sim$ Binomial$\brak{M,p_1p_2}$ \\i.e,
+The distribution of X is also binomial with parameters M and $p_1p_2$.
+\end{frame}
+
+\end{document}
